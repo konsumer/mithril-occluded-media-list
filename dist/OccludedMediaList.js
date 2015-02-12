@@ -10,22 +10,34 @@ OccludedMediaList.controller = function(items, options){
   ctrl.options = options;
   ctrl.options.onclick = ctrl.options.onclick || function(){};
   var pageSize = Math.ceil(window.innerHeight/215);
+  var offset = 0;
 
   ctrl.begin = 0;
-  ctrl.end = pageSize;
+  ctrl.end = pageSize*2;
 
   window.addEventListener('scroll', function(ev){
-    ctrl.begin = Math.ceil(window.pageYOffset/215)-Math.ceil(pageSize/2);
+    ctrl.begin = Math.ceil((window.pageYOffset+offset)/215)-pageSize;
     if (ctrl.begin < 0){
       ctrl.begin = 0;
     }
-    ctrl.end = ctrl.begin + pageSize;
+    ctrl.end = ctrl.begin + (pageSize*2);
+    console.log(ctrl.begin, ctrl.end);
     m.redraw();
   });
+
+  window.addEventListener('resize', function(ev){
+    pageSize = Math.ceil(window.innerHeight/215);
+  });
+
+  ctrl.adjustOffset = function( el, init, ctxt ){
+    if( !init ){
+      offset = el.offsetTop;
+    }
+  };
 };
 
 OccludedMediaList.view = function(ctrl){
-  return m('ul.media-list', {style: {
+  return m('ul.media-list', {config: ctrl.adjustOffset, style: {
       position:'relative',
       height: (ctrl.items().length*215) + 'px',
     }}, ctrl.items().slice(ctrl.begin, ctrl.end).map(function(item,i){
