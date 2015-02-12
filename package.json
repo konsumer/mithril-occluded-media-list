@@ -1,0 +1,33 @@
+{
+  "name": "mithril-occluded-media-list",
+  "version": "0.0.1",
+  "description": "A scroll-occluded bootstrap media-list",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/konsumer/mithril-occluded-media-list.git"
+  },
+  "keywords": [
+    "mithril",
+    "media-list",
+    "media",
+    "bootstrap"
+  ],
+  "author": "David Konsumer <konsumer@jetboystudio.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/konsumer/mithril-occluded-media-list/issues"
+  },
+  "dependencies": {
+    "mithril": "^0.1.30"
+  },
+  "devDependencies": {
+    "browserify": "^8.1.3",
+    "uglify-js": "^2.4.16"
+  },
+  "homepage": "https://github.com/konsumer/mithril-occluded-media-list",
+  "scripts": {
+    "js": "browserify -s OccludedMediaList -x mithril -o dist/OccludedMediaList.js index.js && uglifyjs dist/OccludedMediaList.js -o dist/OccludedMediaList.min.js",
+    "deploy": "npm run js && node bump.js && npm publish"
+  }
+}

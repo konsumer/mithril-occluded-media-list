@@ -1,0 +1,44 @@
+<head>
+  <title>mithril-occluded-media-list</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body></body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mithril/0.1.30/mithril.min.js"></script>
+<script src="dist/OccludedMediaList.min.js"></script>
+<script>(function(){
+var Demo = {};
+
+Demo.controller = function(){
+  var ctrl = this;
+  ctrl.items = m.prop([]);
+  
+  m.request({method:'GET', url:'demo/shows.json'}).then(ctrl.items);
+  
+  ctrl.list = new OccludedMediaList.controller(ctrl.items, {
+    title:'name',
+    image:'poster',
+    text: 'description',
+    onclick: function(item){
+      alert('you clicked ' + item.name);
+    }
+  });
+};
+
+Demo.view = function(ctrl){
+  return [
+    m('.jumbotron', m('.container', m('h1', 'mithril-occluded-media-list'))),
+    m('.container', [
+      m('p', 'This demo includes a gigantic list of boostrap media items that are culled based on scroll visibility.'),
+      OccludedMediaList.view(ctrl.list)
+    ]),
+  ];
+};
+
+
+m.route.mode = 'pathname';
+m.route(document.body, "/", {
+  "/": Demo
+});
+
+})();</script>

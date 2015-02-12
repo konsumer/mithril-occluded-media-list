@@ -1,0 +1,20 @@
+{
+  "name": "mithril-occluded-media-list",
+  "version": "0.0.1",
+  "description": "A scroll-occluded bootstrap media-list",
+  "main": [
+    "dist/OccludedMediaList.js"
+  ],
+  "keywords": [
+    "mithril",
+    "media-list",
+    "media",
+    "bootstrap"
+  ],
+  "author": "David Konsumer <konsumer@jetboystudio.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mithril": "^0.1.30"
+  },
+  "homepage": "https://github.com/konsumer/mithril-occluded-media-list"
+}
