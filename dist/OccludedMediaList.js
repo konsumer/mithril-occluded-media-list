@@ -21,7 +21,6 @@ OccludedMediaList.controller = function(items, options){
       ctrl.begin = 0;
     }
     ctrl.end = ctrl.begin + (pageSize*2);
-    console.log(ctrl.begin, ctrl.end);
     m.redraw();
   });
 

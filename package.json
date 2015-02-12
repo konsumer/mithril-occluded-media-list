@@ -1,6 +1,6 @@
 {
   "name": "mithril-occluded-media-list",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A scroll-occluded bootstrap media-list",
   "main": "index.js",
   "repository": {
