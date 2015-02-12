@@ -1,0 +1,52 @@
+<head>
+  <title>slow-media-list</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body></body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mithril/0.1.30/mithril.min.js"></script>
+<script>(function(){
+var Demo = {};
+
+Demo.controller = function(){
+  var ctrl = this;
+  ctrl.items = m.prop([]);
+  
+  m.request({method:'GET', url:'demo/shows.json'}).then(ctrl.items);
+};
+
+Demo.view = function(ctrl){
+  return [
+    m('.jumbotron', m('.container', m('h1', 'slow-media-list'))),
+    m('.container', [
+      m('p', [
+        'This demo is the full object version of a media-list. Check out how slow it is! For a faster version try ',
+        m('a', {href:'index.html'}, 'mithril-occluded-media-list'),
+        '.'
+      ]),
+      m('ul.media-list', ctrl.items().map(function(item){
+        return m('li.media', [
+          m('.media-left', m('.media-object', {style: {
+            height:'200px',
+            width:'150px',
+            backgroundColor:'#333',
+            backgroundPosition:'50% 50%',
+            backgroundSize:'cover',
+            backgroundImage: item.poster ? 'url(' + item.poster + ')' : ''
+          }})),
+          m('.media-body', [
+            m('h4.media-heading', item.name),
+            m('.media-text', item.description)
+          ])
+        ]);
+      }))
+    ]),
+  ];
+};
+
+
+m.route(document.body, "/", {
+  "/": Demo
+});
+
+})();</script>

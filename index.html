@@ -29,14 +29,17 @@ Demo.view = function(ctrl){
   return [
     m('.jumbotron', m('.container', m('h1', 'mithril-occluded-media-list'))),
     m('.container', [
-      m('p', 'This demo includes a gigantic list of boostrap media items that are culled based on scroll visibility.'),
+      m('p', [
+        'This demo includes a gigantic list of boostrap media items that are culled based on scroll visibility. For comparison, try ',
+        m('a[href="compare.html"]', {href:'compare.html'}, 'the slow version'),
+        '.'
+      ]),
       OccludedMediaList.view(ctrl.list)
     ]),
   ];
 };
 
 
-m.route.mode = 'pathname';
 m.route(document.body, "/", {
   "/": Demo
 });
