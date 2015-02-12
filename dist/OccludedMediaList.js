@@ -9,17 +9,17 @@ OccludedMediaList.controller = function(items, options){
   ctrl.items = items;
   ctrl.options = options;
   ctrl.options.onclick = ctrl.options.onclick || function(){};
-  ctrl.options.pageSize = ctrl.options.pageSize || 4;
+  var pageSize = Math.ceil(window.innerHeight/215);
 
   ctrl.begin = 0;
-  ctrl.end = ctrl.options.pageSize;
+  ctrl.end = pageSize;
 
   window.addEventListener('scroll', function(ev){
-    ctrl.begin = Math.ceil(window.pageYOffset/215)-Math.ceil(ctrl.options.pageSize/2);
+    ctrl.begin = Math.ceil(window.pageYOffset/215)-Math.ceil(pageSize/2);
     if (ctrl.begin < 0){
       ctrl.begin = 0;
     }
-    ctrl.end = ctrl.begin + ctrl.options.pageSize;
+    ctrl.end = ctrl.begin + pageSize;
     m.redraw();
   });
 };
