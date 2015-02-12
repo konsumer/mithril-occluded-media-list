@@ -16,7 +16,7 @@ OccludedMediaList.controller = function(items, options){
   ctrl.end = pageSize*2;
 
   window.addEventListener('scroll', function(ev){
-    ctrl.begin = Math.ceil((window.pageYOffset+offset)/215)-pageSize;
+    ctrl.begin = Math.floor((window.pageYOffset+offset)/215)-pageSize;
     if (ctrl.begin < 0){
       ctrl.begin = 0;
     }
